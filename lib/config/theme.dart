@@ -8,9 +8,10 @@ ThemeData lightThemeData(BuildContext context) {
     scaffoldBackgroundColor: Colors.white,
     iconTheme: IconThemeData(color: darkBackgroundColor),
     textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme)
-        .apply(bodyColor: darkBackgroundColor),
+        .apply(bodyColor: darkBackgroundColor, fontFamily: 'EB Garamond'),
     colorScheme: ColorScheme.light(
       primary: Colors.white,
+      primaryVariant: lightButtonShadowColor,
       secondary: lightButtonBackgroundColor,
       secondaryVariant: lightKeyboardBackgroundColor,
     ),
@@ -23,9 +24,10 @@ ThemeData darkThemeData(BuildContext context) {
     scaffoldBackgroundColor: darkBackgroundColor,
     iconTheme: IconThemeData(color: Colors.white),
     textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme)
-        .apply(bodyColor: Colors.white),
+        .apply(bodyColor: Colors.white, fontFamily: 'EB Garamond'),
     colorScheme: ColorScheme.dark().copyWith(
       primary: darkBackgroundColor,
+      primaryVariant: darkBackgroundColor,
       secondary: darkButtonBackgroundColor,
       secondaryVariant: darkKeyboardBackgroundColor,
     ),

@@ -17,7 +17,7 @@ class CalculatorScreen extends StatelessWidget {
     return Flexible(
       child: Container(
         height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.40,
-        padding: EdgeInsets.only(top: 30, bottom: 30, left: 30, right: 20),
+        padding: EdgeInsets.only(top: 30, bottom: 30, left: 30, right: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.end,
@@ -25,10 +25,13 @@ class CalculatorScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(
-                  operationText,
-                  style: new TextStyle(
-                    fontSize: 20,
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: Text(
+                    operationText,
+                    style: new TextStyle(
+                      fontSize: 20,
+                    ),
                   ),
                 ),
               ],

@@ -11,14 +11,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String _opText = "3+2";
-  String _resText = "5";
+  String _opText = "308 × 42";
+  String _resText = "12,936";
+  List<String> operands = ["÷", "×", "+", "−"];
 
   void _addToScreen(String _text) {
     setState(() {
-      _opText += _text;
+      _opText = operands.contains(_text)
+          ? _opText += " " + _text + " "
+          : _opText += _text;
     });
   }
+
+  // Add functions for equal sign, backspace, plusminus, modulo, and AC
 
   @override
   Widget build(BuildContext context) {
