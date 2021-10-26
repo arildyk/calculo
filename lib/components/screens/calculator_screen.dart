@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class CalculatorScreen extends StatelessWidget {
@@ -25,12 +27,14 @@ class CalculatorScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: Text(
-                    operationText,
-                    style: new TextStyle(
-                      fontSize: 20,
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Text(
+                      operationText,
+                      style: new TextStyle(
+                        fontSize: 20,
+                      ),
                     ),
                   ),
                 ),
@@ -39,11 +43,16 @@ class CalculatorScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(
-                  resultsText,
-                  style: new TextStyle(
-                    fontSize: 60,
-                    fontWeight: FontWeight.bold,
+                Flexible(
+                  child: Text(
+                    resultsText,
+                    style: new TextStyle(
+                      fontSize: resultsText.length > 9
+                          ? 60.0 / (log(resultsText.length) / log(5.5))
+                          : 60.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],

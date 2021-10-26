@@ -4,10 +4,20 @@ import 'package:flutter/material.dart';
 
 class CalculatorGrid extends StatelessWidget {
   final Function addToScreen;
+  final Function plusMinus;
+  final Function allClear;
+  final Function backSpace;
+  final Function percentage;
+  final Function evaluate;
 
   const CalculatorGrid({
     Key? key,
     required this.addToScreen,
+    required this.plusMinus,
+    required this.allClear,
+    required this.backSpace,
+    required this.percentage,
+    required this.evaluate,
   }) : super(key: key);
 
   @override
@@ -34,22 +44,22 @@ class CalculatorGrid extends StatelessWidget {
                 children: [
                   CalculatorButton(
                     text: "AC",
-                    addToScreen: addToScreen,
+                    function: allClear,
                     color: operationsButtonColor,
                   ),
                   CalculatorButton(
                     text: "±",
-                    addToScreen: addToScreen,
+                    function: plusMinus,
                     color: operationsButtonColor,
                   ),
                   CalculatorButton(
                     text: "%",
-                    addToScreen: addToScreen,
+                    function: percentage,
                     color: operationsButtonColor,
                   ),
                   CalculatorButton(
                     text: "÷",
-                    addToScreen: addToScreen,
+                    function: addToScreen,
                     color: operandButtonColor,
                   )
                 ],
@@ -62,22 +72,22 @@ class CalculatorGrid extends StatelessWidget {
                 children: [
                   CalculatorButton(
                     text: "7",
-                    addToScreen: addToScreen,
+                    function: addToScreen,
                     color: Theme.of(context).textTheme.bodyText1!.color,
                   ),
                   CalculatorButton(
                     text: "8",
-                    addToScreen: addToScreen,
+                    function: addToScreen,
                     color: Theme.of(context).textTheme.bodyText1!.color,
                   ),
                   CalculatorButton(
                     text: "9",
-                    addToScreen: addToScreen,
+                    function: addToScreen,
                     color: Theme.of(context).textTheme.bodyText1!.color,
                   ),
                   CalculatorButton(
                     text: "×",
-                    addToScreen: addToScreen,
+                    function: addToScreen,
                     color: operandButtonColor,
                   ),
                 ],
@@ -90,22 +100,22 @@ class CalculatorGrid extends StatelessWidget {
                 children: [
                   CalculatorButton(
                     text: "4",
-                    addToScreen: addToScreen,
+                    function: addToScreen,
                     color: Theme.of(context).textTheme.bodyText1!.color,
                   ),
                   CalculatorButton(
                     text: "5",
-                    addToScreen: addToScreen,
+                    function: addToScreen,
                     color: Theme.of(context).textTheme.bodyText1!.color,
                   ),
                   CalculatorButton(
                     text: "6",
-                    addToScreen: addToScreen,
+                    function: addToScreen,
                     color: Theme.of(context).textTheme.bodyText1!.color,
                   ),
                   CalculatorButton(
                     text: "−",
-                    addToScreen: addToScreen,
+                    function: addToScreen,
                     color: operandButtonColor,
                   ),
                 ],
@@ -118,22 +128,22 @@ class CalculatorGrid extends StatelessWidget {
                 children: [
                   CalculatorButton(
                     text: "1",
-                    addToScreen: addToScreen,
+                    function: addToScreen,
                     color: Theme.of(context).textTheme.bodyText1!.color,
                   ),
                   CalculatorButton(
                     text: "2",
-                    addToScreen: addToScreen,
+                    function: addToScreen,
                     color: Theme.of(context).textTheme.bodyText1!.color,
                   ),
                   CalculatorButton(
                     text: "3",
-                    addToScreen: addToScreen,
+                    function: addToScreen,
                     color: Theme.of(context).textTheme.bodyText1!.color,
                   ),
                   CalculatorButton(
                     text: "+",
-                    addToScreen: addToScreen,
+                    function: addToScreen,
                     color: operandButtonColor,
                   ),
                 ],
@@ -145,23 +155,23 @@ class CalculatorGrid extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   CalculatorButton(
-                    text: "⟲",
-                    addToScreen: addToScreen,
+                    text: "←",
+                    function: backSpace,
                     color: Theme.of(context).textTheme.bodyText1!.color,
                   ),
                   CalculatorButton(
                     text: "0",
-                    addToScreen: addToScreen,
+                    function: addToScreen,
                     color: Theme.of(context).textTheme.bodyText1!.color,
                   ),
                   CalculatorButton(
                     text: ".",
-                    addToScreen: addToScreen,
+                    function: addToScreen,
                     color: Theme.of(context).textTheme.bodyText1!.color,
                   ),
                   CalculatorButton(
                     text: "=",
-                    addToScreen: addToScreen,
+                    function: evaluate,
                     color: operandButtonColor,
                   ),
                 ],

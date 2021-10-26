@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class CalculatorButton extends StatefulWidget {
   final String text;
-  final Function addToScreen;
+  final Function function;
   final Color? color;
 
   CalculatorButton({
     Key? key,
     required this.text,
-    required this.addToScreen,
+    required this.function,
     required this.color,
   }) : super(key: key);
 
@@ -51,7 +51,7 @@ class _CalculatorButtonState extends State<CalculatorButton> {
             ),
           ),
         ),
-        onPressed: () => widget.addToScreen(widget.text),
+        onPressed: () => widget.function(widget.text),
         child: Text(
           widget.text,
           style: TextStyle(fontSize: 30),
