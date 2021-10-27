@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:calculo/config/palette.dart';
 import 'package:flutter/material.dart';
 
 class CalculatorScreen extends StatelessWidget {
@@ -11,6 +12,39 @@ class CalculatorScreen extends StatelessWidget {
     required this.operationText,
     required this.resultsText,
   }) : super(key: key);
+
+  List<TextSpan> generateRichText(String text) {
+    List<TextSpan> list = [];
+    for (int i = 0; i < text.length; i++) {
+      switch (text[i]) {
+        case "÷":
+        case "×":
+        case "+":
+        case "−":
+          list.add(
+            TextSpan(
+              text: text[i],
+              style: TextStyle(
+                fontSize: 20,
+                color: operandButtonColor,
+              ),
+            ),
+          );
+          break;
+        default:
+          list.add(
+            TextSpan(
+              text: text[i],
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            ),
+          );
+      }
+    }
+
+    return list;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +64,9 @@ class CalculatorScreen extends StatelessWidget {
                 Flexible(
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 10),
-                    child: Text(
-                      operationText,
-                      style: new TextStyle(
-                        fontSize: 20,
+                    child: Text.rich(
+                      TextSpan(
+                        children: generateRichText(operationText),
                       ),
                     ),
                   ),

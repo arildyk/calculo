@@ -1,4 +1,5 @@
 import 'package:calculo/components/screens/calculator_screen.dart';
+import 'package:calculo/config/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:math_expressions/math_expressions.dart';
@@ -13,20 +14,17 @@ class HomeScreen extends StatefulWidget {
 }
 
 /* TO DO:
-  Catch exceptions for expressions
-  Add rich text
   Add iOS support
-  Add app icon
 */
 
 class _HomeScreenState extends State<HomeScreen> {
   String _opText = "";
   String _resText = "0";
-  List<String> operands = ["÷", "×", "+", "−"];
+  List<String> _operands = ["÷", "×", "+", "−"];
 
   void _addToScreen(String _text) {
     setState(() {
-      _opText = operands.contains(_text)
+      _opText = _operands.contains(_text)
           ? _opText += " " + _text + " "
           : _opText += _text;
     });
@@ -52,6 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _percentage(String _text) {
+    _resText = _resText.replaceAll(",", "");
     double res = double.parse(_resText);
     res *= 0.01;
     setState(() {
@@ -64,25 +63,44 @@ class _HomeScreenState extends State<HomeScreen> {
     Parser p = Parser();
 
     String temp = _opText;
-    temp = temp.replaceAll(operands[0], "/");
-    temp = temp.replaceAll(operands[1], "*");
-    temp = temp.replaceAll(operands[3], "-");
+    temp = temp.replaceAll(_operands[0], "/");
+    temp = temp.replaceAll(_operands[1], "*");
+    temp = temp.replaceAll(_operands[3], "-");
 
-    Expression exp = p.parse(temp);
+    try {
+      Expression exp = p.parse(temp);
 
-    double res = exp.evaluate(EvaluationType.REAL, ContextModel());
+      double res = exp.evaluate(EvaluationType.REAL, ContextModel());
 
-    RegExp rgx = RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
+      RegExp rgx = RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
 
-    setState(() {
-      _resText = res == double.infinity
-          ? "∞"
-          : res == double.negativeInfinity
-              ? "-∞"
-              : res
-                  .toStringAsFixed(res.truncateToDouble() == res ? 0 : 3)
-                  .replaceAllMapped(rgx, (Match match) => "${match[1]},");
-    });
+      setState(() {
+        _resText = res == double.infinity
+            ? "∞"
+            : res == double.negativeInfinity
+                ? "-∞"
+                : res
+                    .toStringAsFixed(res.truncateToDouble() == res ? 0 : 3)
+                    .replaceAllMapped(rgx, (Match match) => "${match[1]},");
+      });
+    } on FormatException {
+      setState(() {
+        _resText = "0";
+      });
+    } on RangeError {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Enter a valid expression"),
+          backgroundColor: operandButtonColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(15.0),
+            ),
+          ),
+          duration: Duration(milliseconds: 1500),
+        ),
+      );
+    }
   }
 
   @override
@@ -111,7 +129,10 @@ class _HomeScreenState extends State<HomeScreen> {
         body: SafeArea(
           child: Column(
             children: [
-              CalculatorScreen(operationText: _opText, resultsText: _resText),
+              CalculatorScreen(
+                operationText: _opText,
+                resultsText: _resText,
+              ),
               CalculatorGrid(
                 addToScreen: _addToScreen,
                 plusMinus: _plusMinus,
