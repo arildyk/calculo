@@ -155,7 +155,7 @@ class CalculatorGrid extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   CalculatorButton(
-                    text: "←",
+                    text: "⌫",
                     function: backSpace,
                     color: Theme.of(context).textTheme.bodyText1!.color,
                   ),
