@@ -6,11 +6,6 @@ A mobile calculator powered by Flutter.
 Calculo lets you type basic arithmetic operations in the order they are entered.
 
 ## Screenshots
-<style>
-td, th {
-    border: none!important;
-}
-</style>
 |![Light Mode Android](screenshots/LightMode.jpg)|![Dark Mode Android](screenshots/DarkMode.jpg)|
 |---|---|
 |![Light Mode iOS](screenshots/LightModeiOS.png)|![Dark Mode iOS](screenshots/DarkModeiOS.png)|
