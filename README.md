@@ -22,3 +22,6 @@ Calculo lets you type basic arithmetic operations in the order they are entered.
 
 ## Installation
 Clone the repository to your local machine. Open it with a suitable IDE or Visual Studio Code.
+
+## License
+Distributed under the MIT License. See `LICENSE` for more information.
