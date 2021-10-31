@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:calculo/components/screens/calculator_screen.dart';
 import 'package:calculo/config/palette.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:math_expressions/math_expressions.dart';
@@ -121,30 +124,56 @@ class _HomeScreenState extends State<HomeScreen> {
           Theme.of(context).colorScheme.secondaryVariant,
     );
 
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: Theme.of(context).brightness == Brightness.light
-          ? _statusBarLight
-          : _statusBarDark,
-      child: Scaffold(
-        body: SafeArea(
-          child: Column(
-            children: [
-              CalculatorScreen(
-                operationText: _opText,
-                resultsText: _resText,
+    return Platform.isIOS
+        ? Scaffold(
+            body: SafeArea(
+              bottom: false,
+              child: Column(
+                children: [
+                  CalculatorScreen(
+                    operationText: _opText,
+                    resultsText: _resText,
+                  ),
+                  CalculatorGrid(
+                    addToScreen: _addToScreen,
+                    plusMinus: _plusMinus,
+                    allClear: _allClear,
+                    backSpace: _backSpace,
+                    percentage: _percentage,
+                    evaluate: _evaluate,
+                  ),
+                  Container(
+                    color: Theme.of(context).colorScheme.secondaryVariant,
+                    height: MediaQuery.of(context).padding.bottom,
+                  ),
+                ],
               ),
-              CalculatorGrid(
-                addToScreen: _addToScreen,
-                plusMinus: _plusMinus,
-                allClear: _allClear,
-                backSpace: _backSpace,
-                percentage: _percentage,
-                evaluate: _evaluate,
+            ),
+          )
+        : AnnotatedRegion<SystemUiOverlayStyle>(
+            value: Theme.of(context).brightness == Brightness.light
+                ? _statusBarLight
+                : _statusBarDark,
+            child: Scaffold(
+              body: SafeArea(
+                child: Column(
+                  children: [
+                    CalculatorScreen(
+                      operationText: _opText,
+                      resultsText: _resText,
+                    ),
+                    CalculatorGrid(
+                      addToScreen: _addToScreen,
+                      plusMinus: _plusMinus,
+                      allClear: _allClear,
+                      backSpace: _backSpace,
+                      percentage: _percentage,
+                      evaluate: _evaluate,
+                    ),
+                  ],
+                ),
               ),
-            ],
-          ),
-        ),
-      ),
-    );
+            ),
+          );
   }
 }
