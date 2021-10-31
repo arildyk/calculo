@@ -20,4 +20,4 @@ Calculo lets you type basic arithmetic operations in the order they are entered.
 - [Google Fonts](https://pub.dev/packages/google_fonts)
 
 ## Installation
-Clone the repository to your local machine. Open it with an IDE or Visual Studio Code. Run the app with [unsound null safety](https://dart.dev/null-safety/unsound-null-safety).
+Clone the repository to your local machine. Open it with an IDE or Visual Studio Code.

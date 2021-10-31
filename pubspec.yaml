@@ -30,7 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.2
 
   # allows us to easily use any of the 977 fonts from fonts.google.com
-  google_fonts: ^1.1.2
+  google_fonts: ^2.1.0
 
   # allows us to perform computations on mathematical expressions
   math_expressions: ^2.2.0
