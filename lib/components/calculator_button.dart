@@ -50,8 +50,13 @@ class _CalculatorButtonState extends State<CalculatorButton> {
               ),
             ),
           ),
+          overlayColor: MaterialStateColor.resolveWith(
+            (states) => widget.color!.withOpacity(0.5),
+          ),
         ),
-        onPressed: () => widget.function(widget.text),
+        onPressed: () {
+          widget.function(widget.text);
+        },
         child: Text(
           widget.text,
           style: TextStyle(fontSize: 30),
